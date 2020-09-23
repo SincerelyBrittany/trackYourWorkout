@@ -1,0 +1,3 @@
+[submodule "track_your_workout_backend"]
+	path = track_your_workout_backend
+	url = https://github.com/SincerelyBrittany/track_your_workout_backend
