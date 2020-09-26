@@ -3,8 +3,7 @@ class Workouts{
         this.workouts = []
         this.adapter = new WorkoutsAdapter()
         this.initBindingsAndEventListeners()
-        this.fetchAndLoadWorkouts()
-        
+        this.fetchAndLoadWorkouts()  
     }
     
     initBindingsAndEventListeners(){
@@ -32,7 +31,6 @@ class Workouts{
 
     fetchAndLoadWorkouts(){
         this.adapter.getWorkouts().then(workouts =>{
-            // workouts["data"].forEach(element => console.log(element["attributes"]["date"]));
             workouts.forEach(workout => this.workouts.push(new Workout(workout)))
         })
         .then(() =>{
@@ -41,17 +39,13 @@ class Workouts{
     }
 
     render(){
-        // console.log(this.workouts)
         const workoutArray = this.workouts.map(workout => workout.renderHTML()).join(' ')
         this.workoutContainer.innerHTML = `${workoutArray}`
         this.coll.addEventListener("click", this.collapseFunc())
-        // console.log(this.workoutContainer, "this is workout container")
     }
 
     collapseFunc(){
-        // var coll = document.getElementsByClassName("collapsible");
         var i;
-
         for (i = 0; i < this.coll.length; i++) {
             this.coll[i].addEventListener("click", function() {
                 this.classList.toggle("active");
