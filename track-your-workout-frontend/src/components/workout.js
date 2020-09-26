@@ -1,8 +1,8 @@
 class Workout{
     constructor(workoutJson){
         this.id = workoutJson.id
-        this.date = workoutJson.date
-        this.user = workoutJson.user.name
+        this.date = workoutJson.update_date
+        this.user = workoutJson.user.username
         this.workout = workoutJson.workout
     }
 

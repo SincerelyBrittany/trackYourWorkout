@@ -10,9 +10,11 @@ class Workouts{
         this.workoutContainer = document.getElementById('workout-container')
         this.newWorkoutNameInput = document.getElementById("workout-name")
         this.newWorkoutUrlInput = document.getElementById("workout-url")
-        this.newWorkoutTimeInput = document.getElementById("workout-time")
+        // this.newWorkoutTimeInput = document.getElementById("workout-time")
+        this.newMeetingTimeInput = document.getElementById("meeting-time")
+        this.newUserInput = document.getElementById("workout-user")
         this.coll = document.getElementsByClassName("collapsible");
-        this.newWorkoutCategoryInput = document.getElementById("workout-category")
+        // this.newWorkoutCategoryInput = document.getElementById("workout-category")
         this.workoutForm = document.getElementById('new-workout-form')
         this.workoutForm.addEventListener("submit", this.createWorkout.bind(this))
     }
@@ -22,9 +24,12 @@ class Workouts{
         // const { name, url, etc} = this.newWorkoutNameInput
         const name = this.newWorkoutNameInput.value
         const url = this.newWorkoutUrlInput.value
-        const time = this.newWorkoutTimeInput.value
-        const category = this.newWorkoutCategoryInput.value
-        this.adapter.createWorkout(name, url, time, category).then(workout => {
+        const time = this.newMeetingTimeInput.value
+        const username = this.newUserInput.value
+        // const category = this.newWorkoutCategoryInput.value
+        const date = this.newMeetingTimeInput.value
+        console.log(name, url, time, username, date)
+        this.adapter.createWorkout(name, url, time, date, username).then(workout => {
             console.log(workout)
         })
     }

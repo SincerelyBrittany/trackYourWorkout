@@ -11,19 +11,20 @@ class WorkoutsAdapter {
         )
     }
 
-    createWorkout(name, url, time, category){
+    createWorkout(name, url, time, date, username){
         const data ={
             name: name,
             url: url,
             time: time,
-            category_id: category
+            date: date, 
+            username: username
         }
         return fetch(this.baseURL, {
             method: 'POST',
             headers:{
                 'content-type': 'application/json'
             },
-            body: JSON.stringify({workout: data})
+            body: JSON.stringify({user_workout: data})
         })
         .then(res => res.json())
     }
