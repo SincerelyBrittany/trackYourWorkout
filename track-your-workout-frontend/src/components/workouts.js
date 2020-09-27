@@ -14,6 +14,7 @@ class Workouts{
         this.newMeetingTimeInput = document.getElementById("meeting-time")
         this.newUserInput = document.getElementById("workout-user")
         this.coll = document.getElementsByClassName("collapsible");
+        this.deleteButton = document.getElementsByClassName("close")
         // this.newWorkoutCategoryInput = document.getElementById("workout-category")
         this.workoutForm = document.getElementById('new-workout-form')
         this.workoutForm.addEventListener("submit", this.createWorkout.bind(this))
@@ -28,7 +29,7 @@ class Workouts{
         const username = this.newUserInput.value
         // const category = this.newWorkoutCategoryInput.value
         const date = this.newMeetingTimeInput.value
-        console.log(name, url, time, username, date)
+        // console.log(name, url, time, username, date)
         this.adapter.createWorkout(name, url, time, date, username).then(workout => {  
             if (this.workouts[workout.update_date]) {
                 this.workouts[workout.update_date].push(new Workout(workout))
@@ -62,9 +63,10 @@ class Workouts{
             ${this.workouts[date].map((work) => work.renderHTML()).join(' ')}</div>`
         }).join(' ')
         // const workoutArray = this.workouts.map(workout => workout.renderHTML()).join(' ')
-        console.log(workoutString, "this is workout")
+        // console.log(workoutString, "this is workout")
         this.workoutContainer.innerHTML = `${workoutString}`
         this.collapseFunc()
+        this.deleteFunc()
     }
 
     collapseFunc(){
@@ -73,18 +75,26 @@ class Workouts{
             this.coll[i].addEventListener("click", function() {
                 this.classList.toggle("active");
                 var content = this.nextElementSibling;
-                console.log(content)
                 if (content.style.display === "block") {
                 content.style.display = "none";
                 } else {
                 content.style.display = "block";
                 }
-                // if (content.style.display === "block") {
-                // content.style.display = "none";
-                // } else {
-                // content.style.display = "block";
-                // }
             });
         }
+    }
+
+    deleteFunc(){
+        // console.log(this)
+        let i;
+        for (i = 0; i < this.deleteButton.length; i++) {
+            this.deleteButton[i].addEventListener("click", function() {
+                debugger
+                const div = this.parentElement.dataset
+                console.log(this, "this is delete")
+        
+            });
+        }
+
     }
 }
