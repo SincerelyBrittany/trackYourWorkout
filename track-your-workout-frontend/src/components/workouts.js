@@ -29,14 +29,19 @@ class Workouts{
         // const category = this.newWorkoutCategoryInput.value
         const date = this.newMeetingTimeInput.value
         console.log(name, url, time, username, date)
-        this.adapter.createWorkout(name, url, time, date, username).then(workout => {
-            console.log(workout)
+        this.adapter.createWorkout(name, url, time, date, username).then(workout => {  
+            if (this.workouts[workout.update_date]) {
+                this.workouts[workout.update_date].push(new Workout(workout))
+                this.render()
+            } else {
+                this.workouts = {...this.workouts, [workout.update_date]: [new Workout(workout)]}
+                this.render()
+            }
         })
     }
 
     fetchAndLoadWorkouts(){
         this.adapter.getWorkouts().then(workouts =>{
-            
             workouts.forEach(workout => {
                 if (this.workouts[workout.update_date]) {
                     this.workouts[workout.update_date].push(new Workout(workout))
@@ -57,6 +62,7 @@ class Workouts{
             ${this.workouts[date].map((work) => work.renderHTML()).join(' ')}</div>`
         }).join(' ')
         // const workoutArray = this.workouts.map(workout => workout.renderHTML()).join(' ')
+        console.log(workoutString, "this is workout")
         this.workoutContainer.innerHTML = `${workoutString}`
         this.collapseFunc()
     }
