@@ -11,6 +11,9 @@ class Workouts{
         this.newWorkoutNameInput = document.getElementById("workout-name")
         this.newWorkoutUrlInput = document.getElementById("workout-url")
         this.newMeetingTimeInput = document.getElementById("meeting-time")
+        // this.newMeetingTimeInput.min = "2020-09-07T00:00";
+        // console.log(this.newMeetingTimeInput)
+        // debugger
         this.newUserInput = document.getElementById("workout-user")
         this.coll = document.getElementsByClassName("collapsible");
         this.deleteButton = document.getElementsByClassName("close")
