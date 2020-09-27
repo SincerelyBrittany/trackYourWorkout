@@ -8,7 +8,6 @@ class Workout{
 
     renderHTML(){
         return `
-        <button type="button" class="collapsible">${this.date}</button>
             <div class="${this.id} content"data-set-id="${this.id}">
                 <p> The user is: ${this.user} </p>
                 <h3> The workout name is: ${this.workout.name}</h3>
