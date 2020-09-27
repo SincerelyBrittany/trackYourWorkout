@@ -10,7 +10,6 @@ class App{
 // Set up users 
 // If date passes you want to remove the div 
 // User can only make workouts for 4 weeks in advance
-// Update date in serializer 
 // CRUD a workout 
 
 //LATER - Categories 

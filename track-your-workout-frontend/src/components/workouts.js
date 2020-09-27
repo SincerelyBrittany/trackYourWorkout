@@ -85,22 +85,23 @@ class Workouts{
     }
 
     deleteFunc(){
-        // console.log(this)
-        // debugger
         const that = this
         let i;
         for (i = 0; i < this.deleteButton.length; i++) {
             this.deleteButton[i].addEventListener("click", function() {
-                // debugger
                 const theDivElement = this.parentElement
-                const theDiv = this.parentElement.dataset.setId
-                console.log(theDiv)
-                that.adapter.deleteWorkout(theDiv).then(
-                    theDivElement.remove()
-                    // console.log(workout, "this is workout")
-                    // console.log(theDiv, "this is the div")
-                )
-        
+                const theDivID = this.parentElement.dataset.setId
+                that.adapter.deleteWorkout(theDivID).then(() => {
+                    if (theDivElement.parentElement.innerHTML !== ""){
+                            // debugger
+                            // theDivElement.parentElement.remove()
+                            theDivElement.remove()
+                    }
+                    else{
+                         theDivElement.parentElement.remove()
+                         theDivElement.remove()
+                    }
+                })
             });
         }
     }

@@ -1,3 +1,9 @@
+.container{
+  width: 600px;
+  text-align: center;
+  margin-left: 25%;
+}
+
 .collapsible {
   background-color: #eee;
   color: #444;
@@ -18,14 +24,14 @@
 /* Style the collapsible content. Note: hidden by default */
 .all-workouts {
   padding: 0 18px;
-  display: block;
+  display: none;
   overflow: hidden;
   background-color: #f1f1f1;
 }
 
 .close {
   cursor: pointer;
-  position: absolute;
+  /* position: absolute; */
   /* top: 50%; */
   right: 0%;
   padding: 12px 16px;
