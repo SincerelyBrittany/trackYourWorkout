@@ -1,6 +1,6 @@
 class Workouts{
     constructor(){
-        this.workouts = []
+        this.workouts = {}
         this.adapter = new WorkoutsAdapter()
         this.initBindingsAndEventListeners()
         this.fetchAndLoadWorkouts()  
@@ -36,7 +36,14 @@ class Workouts{
 
     fetchAndLoadWorkouts(){
         this.adapter.getWorkouts().then(workouts =>{
-            workouts.forEach(workout => this.workouts.push(new Workout(workout)))
+            
+            workouts.forEach(workout => {
+                if (this.workouts[workout.update_date]) {
+                    this.workouts[workout.update_date].push(new Workout(workout))
+                } else {
+                    this.workouts = {...this.workouts, [workout.update_date]: [new Workout(workout)]}
+                }
+            })
         })
         .then(() =>{
             this.render()
@@ -44,22 +51,33 @@ class Workouts{
     }
 
     render(){
-        const workoutArray = this.workouts.map(workout => workout.renderHTML()).join(' ')
-        this.workoutContainer.innerHTML = `${workoutArray}`
-        this.coll.addEventListener("click", this.collapseFunc())
+
+        const workoutString = Object.keys(this.workouts).map((date) => {
+           return `<button type="button" class="collapsible">${date}</button><div id="all-workouts">
+            ${this.workouts[date].map((work) => work.renderHTML()).join(' ')}</div>`
+        }).join(' ')
+        // const workoutArray = this.workouts.map(workout => workout.renderHTML()).join(' ')
+        this.workoutContainer.innerHTML = `${workoutString}`
+        this.collapseFunc()
     }
 
     collapseFunc(){
-        var i;
+        let i;
         for (i = 0; i < this.coll.length; i++) {
             this.coll[i].addEventListener("click", function() {
                 this.classList.toggle("active");
                 var content = this.nextElementSibling;
+                console.log(content)
                 if (content.style.display === "block") {
                 content.style.display = "none";
                 } else {
                 content.style.display = "block";
                 }
+                // if (content.style.display === "block") {
+                // content.style.display = "none";
+                // } else {
+                // content.style.display = "block";
+                // }
             });
         }
     }
