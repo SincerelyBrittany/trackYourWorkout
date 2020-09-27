@@ -28,4 +28,12 @@ class WorkoutsAdapter {
         })
         .then(res => res.json())
     }
+
+    deleteWorkout(id){
+        console.log(id, "this is in the delete adapater")
+        return fetch(`${this.baseURL}/${id}`, {
+            method: "DELETE"
+          })
+          .then(res=> res.json())
+    }
 }

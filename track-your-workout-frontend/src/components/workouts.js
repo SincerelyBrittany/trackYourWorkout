@@ -10,11 +10,11 @@ class Workouts{
         this.workoutContainer = document.getElementById('workout-container')
         this.newWorkoutNameInput = document.getElementById("workout-name")
         this.newWorkoutUrlInput = document.getElementById("workout-url")
-        // this.newWorkoutTimeInput = document.getElementById("workout-time")
         this.newMeetingTimeInput = document.getElementById("meeting-time")
         this.newUserInput = document.getElementById("workout-user")
         this.coll = document.getElementsByClassName("collapsible");
         this.deleteButton = document.getElementsByClassName("close")
+        this.deleteFunc.bind(this)
         // this.newWorkoutCategoryInput = document.getElementById("workout-category")
         this.workoutForm = document.getElementById('new-workout-form')
         this.workoutForm.addEventListener("submit", this.createWorkout.bind(this))
@@ -85,16 +85,18 @@ class Workouts{
     }
 
     deleteFunc(){
-        // console.log(this)
+        console.log(this)
         let i;
         for (i = 0; i < this.deleteButton.length; i++) {
             this.deleteButton[i].addEventListener("click", function() {
-                debugger
-                const div = this.parentElement.dataset
-                console.log(this, "this is delete")
+                // debugger
+                const theDiv = this.parentElement.dataset.setId
+                console.log(theDiv)
+                this.adapter.deleteWorkout(theDiv).then(workout => {
+                    console.log(workout)
+                })
         
             });
         }
-
     }
 }
