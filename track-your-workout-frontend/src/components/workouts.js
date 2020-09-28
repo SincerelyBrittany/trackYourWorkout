@@ -13,6 +13,9 @@ class Workouts{
         this.coll = document.getElementsByClassName("collapsible");
         this.deleteButton = document.getElementsByClassName("close")
         this.deleteFunc.bind(this)
+        
+    //    this.workoutForm = document.getElementById('new-workout-form')
+        // this.workoutContainerForm.children
         // this.newWorkoutCategoryInput = document.getElementById("workout-category")
     }
 
@@ -44,23 +47,27 @@ class Workouts{
           max="2030-06-14T00:00">
         <input type="submit"/>
       </form>`
-        this.workoutForm = document.getElementById('new-workout-form')
+       this.workoutForm = document.getElementById('new-workout-form')
+        //    this.workoutForm.addEventListener("submit", this.createWorkout.bind(this))
         this.workoutForm.addEventListener("submit", this.createWorkout.bind(this))
-        this.newWorkoutNameInput = document.getElementById("workout-name")
-        this.newWorkoutUrlInput = document.getElementById("workout-url")
-        this.newMeetingTimeInput = document.getElementById("meeting-time")
-        this.newUserInput = document.getElementById("workout-user")
     }
+    
 
     createWorkout(e){
         e.preventDefault()
         // const { name, url, etc} = this.newWorkoutNameInput
+        // console.log(this.newMeetingTimeInput, "this is the input")
+        this.newWorkoutNameInput = document.getElementById("workout-name")
+        this.newWorkoutUrlInput = document.getElementById("workout-url")
+        this.newMeetingTimeInput = document.getElementById("meeting-time")
+        this.newUserInput = document.getElementById("workout-user")
         const name = this.newWorkoutNameInput.value
         const url = this.newWorkoutUrlInput.value
         const time = this.newMeetingTimeInput.value
         const username = this.newUserInput.value
         // const category = this.newWorkoutCategoryInput.value
         const date = this.newMeetingTimeInput.value
+        // console.log(name, url, time, username, date)
         this.adapter.createWorkout(name, url, time, date, username).then(workout => {  
             if (this.workouts[workout.update_date]) {
                 this.workouts[workout.update_date].push(new Workout(workout))

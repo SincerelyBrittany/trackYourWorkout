@@ -4,6 +4,7 @@ class Workout{
         this.date = workoutJson.update_date
         this.user = workoutJson.user.username
         this.workout = workoutJson.workout
+        // debugger
     }
 
     renderHTML(){
