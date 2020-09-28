@@ -1,6 +1,7 @@
 class Login {
     constructor(){
        console.log("hello work")
+       this.adapter = new WorkoutsAdapter()
        this.renderLogin()
     }
 
@@ -26,8 +27,10 @@ class Login {
         e.preventDefault()
         console.log(this, "this is the this in login")
         this.adapter.postUser(e.target.username.value).then(user => {
-            console.log
+            console.log(user)
+            // state.user = user 
             // new this.workouts
+            // this.workouts = new Workouts()
         console.log(e.target.username.value)
         })
     }

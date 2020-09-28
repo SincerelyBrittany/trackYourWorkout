@@ -1,6 +1,6 @@
 class App{
     constructor(){
-        this.workouts = new Workouts()
+        this.login = new Login()
     }
 }
 

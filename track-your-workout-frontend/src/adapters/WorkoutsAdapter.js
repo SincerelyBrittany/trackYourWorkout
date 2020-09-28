@@ -6,13 +6,13 @@ class WorkoutsAdapter {
         "http://localhost:3000/api/v1/user_workouts"
     }
 
-    postUser = (username) => {
-    return fetch("http://localhost:3000/api/v1/users", {
+    postUser(username) {
+    return fetch("http://localhost:3000/users", {
         method: 'POST',
             headers:{
                 'content-type': 'application/json'
             },
-            body: JSON.stringify({user_workout: data})
+            body: JSON.stringify({username: username})
         })
         .then(res => res.json())
     }
