@@ -8,6 +8,7 @@ class Workouts{
     }
     
     initBindingsAndEventListeners(){
+        document.getElementById("login").remove()
         this.workoutContainerForm = document.getElementById('new-workout-container')
         this.workoutContainer = document.getElementById('workout-container')
         this.coll = document.getElementsByClassName("collapsible");
