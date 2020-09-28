@@ -3,29 +3,30 @@ class Workouts{
         this.workouts = {}
         this.adapter = new WorkoutsAdapter()
         this.initBindingsAndEventListeners()
+        this.fetchAndLoadForm()
         this.fetchAndLoadWorkouts()  
     }
     
     initBindingsAndEventListeners(){
+        this.workoutContainerForm = document.getElementById('new-workout-container')
         this.workoutContainer = document.getElementById('workout-container')
         this.newWorkoutNameInput = document.getElementById("workout-name")
         this.newWorkoutUrlInput = document.getElementById("workout-url")
         this.newMeetingTimeInput = document.getElementById("meeting-time")
-        // this.newMeetingTimeInput.min = "2020-09-07T00:00";
-        // console.log(this.newMeetingTimeInput)
-        // debugger
         this.newUserInput = document.getElementById("workout-user")
         this.coll = document.getElementsByClassName("collapsible");
         this.deleteButton = document.getElementsByClassName("close")
         this.deleteFunc.bind(this)
-        // this.newWorkoutCategoryInput = document.getElementById("workout-category")
-        this.workoutForm = document.getElementById('new-workout-form')
-        this.workoutForm.addEventListener("submit", this.createWorkout.bind(this))
+        
+        // this.workoutForm = document.getElementById('new-workout-form')
+        // this.workoutForm.addEventListener("submit", this.createWorkout.bind(this))
+        // // this.newWorkoutCategoryInput = document.getElementById("workout-category")
     }
 
     createWorkout(e){
         e.preventDefault()
         // const { name, url, etc} = this.newWorkoutNameInput
+        console.log(this.newMeetingTimeInput, "this is the input")
         const name = this.newWorkoutNameInput.value
         const url = this.newWorkoutUrlInput.value
         const time = this.newMeetingTimeInput.value
@@ -44,6 +45,34 @@ class Workouts{
         })
     }
 
+    fetchAndLoadForm(){
+        // var today = new Date();
+        // var dd = today.getDate();
+        // var mm = today.getMonth()+1; //January is 0!
+        // var yyyy = today.getFullYear();
+        // if(dd<10){
+        //         dd='0'+dd
+        //     } 
+        //     if(mm<10){
+        //         mm='0'+mm
+        //     } 
+
+        // today = yyyy+'-'+mm+'-'+dd;
+
+        return this.workoutContainerForm.innerHTML = `<form id="new-workout-form">
+        <input id="workout-name" type="text" placeholder="name"/>
+        <input id="workout-url" type="text" placeholder="url"/>
+        <!-- <input id="workout-time" type="text" placeholder="time"/> -->
+        <input id="workout-user" type="text" placeholder="user"/>
+          <input type="datetime-local" id="meeting-time"
+          name="meeting-time" value="" max=""
+          max="2030-06-14T00:00">
+        <input type="submit"/>
+      </form>`
+    }
+
+
+
     fetchAndLoadWorkouts(){
         this.adapter.getWorkouts().then(workouts =>{
             workouts.forEach(workout => {
@@ -60,7 +89,6 @@ class Workouts{
     }
 
     render(){
-
         const workoutString = Object.keys(this.workouts).map((date) => {
            return `<button type="button" class="collapsible">${date}</button><div id="all-workouts">
             ${this.workouts[date].map((work) => work.renderHTML()).join(' ')}</div>`
@@ -76,6 +104,7 @@ class Workouts{
         let i;
         for (i = 0; i < this.coll.length; i++) {
             this.coll[i].addEventListener("click", function() {
+                // console.log(this, "this is this")
                 this.classList.toggle("active");
                 var content = this.nextElementSibling;
                 if (content.style.display === "block") {
