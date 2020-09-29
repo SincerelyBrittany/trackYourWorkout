@@ -2,7 +2,6 @@
 class WorkoutsAdapter {
     constructor(){
         this.baseURL = 
-        // "http://localhost:3000/api/v1/workouts"
         "http://localhost:3000/api/v1/user_workouts"
     }
 
@@ -17,32 +16,19 @@ class WorkoutsAdapter {
         .then(res => res.json())
     }
 
-    // getWorkouts(){
-    //     return fetch(this.baseURL, {
-    //         method: 'GET',
-    //         headers:{
-    //             'content-type': 'application/json'
-    //         },
-    //         body: JSON.stringify({user_id: state.user.id})
-    //     })
-    //     .then(res => res.json())
-    // }
-
-
-
     getWorkouts(){
         console.log(state.user, "this is state")
         return fetch(this.baseURL).then(res => res.json()
         )
     }
 
-    createWorkout(name, url, time, date, username){
+    createWorkout(name, url, time, date){
         const data ={
             name: name,
             url: url,
             time: time,
             date: date, 
-            username: username
+            username: state.user.id
         }
         return fetch(this.baseURL, {
             method: 'POST',

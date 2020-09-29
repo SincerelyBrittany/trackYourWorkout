@@ -37,9 +37,7 @@ class Workouts{
         this.workoutContainerForm.innerHTML +=
         `<form id="new-workout-form">
         <input id="workout-name" type="text" placeholder="name"/>
-        <input id="workout-url" type="text" placeholder="url"/>
-        <!-- <input id="workout-time" type="text" placeholder="time"/> -->
-        <input id="workout-user" type="text" placeholder="user"/>
+        <input id="workout-url" type="text" placeholder="Enter embeded URL"/>
           <input type="datetime-local" id="meeting-time"
           name="meeting-time" value="" max=""
           max="2030-06-14T00:00">
@@ -59,10 +57,10 @@ class Workouts{
         const name = this.newWorkoutNameInput.value
         const url = this.newWorkoutUrlInput.value
         const time = this.newMeetingTimeInput.value
-        const username = this.newUserInput.value
+        // const username = state.user.id
         // const category = this.newWorkoutCategoryInput.value
         const date = this.newMeetingTimeInput.value
-        this.adapter.createWorkout(name, url, time, date, username).then(workout => {  
+        this.adapter.createWorkout(name, url, time, date).then(workout => {  
             if (this.workouts[workout.update_date]) {
                 this.workouts[workout.update_date].push(new Workout(workout))
                 this.render()
