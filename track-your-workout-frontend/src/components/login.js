@@ -1,12 +1,10 @@
 class Login {
     constructor(){
-       console.log("hello work")
        this.adapter = new WorkoutsAdapter()
        this.renderLogin()
     }
 
     renderLogin(){
-        // document.body.innerHTML = ""
         const loginContainer = document.getElementById("login")
         const h1 = document.createElement("h1")
         h1.innerText = "What is your name?"
@@ -14,28 +12,16 @@ class Login {
         const input = document.createElement("input")
         input.name = "username"
         form.appendChild(input)
-        // form.addEventListener("submit", this.submit.bind(this))
         form.addEventListener("submit", this.submit)
         loginContainer.append(h1, form)
     }
-
-    // submit(e){
-    //     e.preventDefault()
-    //     console.log(this)
-    // }
 
     submit = (e) => {
         e.preventDefault()
         console.log(this, "this is the this in login")
         this.adapter.postUser(e.target.username.value).then(user => {
-            console.log(user)
             state.user = user 
-            // new this.workouts()
-            
-            // debugger
             new Workouts()
-            // new Workouts()
-        console.log(e.target.username.value)
         })
     }
 }
