@@ -17,7 +17,21 @@ class WorkoutsAdapter {
         .then(res => res.json())
     }
 
+    // getWorkouts(){
+    //     return fetch(this.baseURL, {
+    //         method: 'GET',
+    //         headers:{
+    //             'content-type': 'application/json'
+    //         },
+    //         body: JSON.stringify({user_id: state.user.id})
+    //     })
+    //     .then(res => res.json())
+    // }
+
+
+
     getWorkouts(){
+        console.log(state.user, "this is state")
         return fetch(this.baseURL).then(res => res.json()
         )
     }
