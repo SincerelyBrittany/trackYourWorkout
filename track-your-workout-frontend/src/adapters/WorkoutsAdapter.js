@@ -17,7 +17,6 @@ class WorkoutsAdapter {
     }
 
     getWorkouts(){
-        // console.log(state.user, "this is state")
         return fetch(this.baseURL).then(res => res.json()
         )
     }
@@ -28,8 +27,8 @@ class WorkoutsAdapter {
             url: url,
             time: time,
             date: date, 
-            // username: state.user.id
-            username: 1
+            username: state.user.id
+
         }
         return fetch(this.baseURL, {
             method: 'POST',
