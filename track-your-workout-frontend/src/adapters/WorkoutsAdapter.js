@@ -17,7 +17,7 @@ class WorkoutsAdapter {
     }
 
     getWorkouts(){
-        console.log(state.user, "this is state")
+        // console.log(state.user, "this is state")
         return fetch(this.baseURL).then(res => res.json()
         )
     }
@@ -28,10 +28,22 @@ class WorkoutsAdapter {
             url: url,
             time: time,
             date: date, 
-            username: state.user.id
+            // username: state.user.id
+            username: 1
         }
         return fetch(this.baseURL, {
             method: 'POST',
+            headers:{
+                'content-type': 'application/json'
+            },
+            body: JSON.stringify({user_workout: data})
+        })
+        .then(res => res.json())
+    }
+
+    editWorkout(data){
+        return fetch(`${this.baseURL}/${data.id}`, {
+            method: 'PATCH',
             headers:{
                 'content-type': 'application/json'
             },
