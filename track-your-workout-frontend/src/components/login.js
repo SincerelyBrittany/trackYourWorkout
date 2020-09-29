@@ -5,6 +5,8 @@ class Login {
     }
 
     renderLogin(){
+        const container = document.querySelector(".container")
+        container.style.display = "none"
         const loginContainer = document.getElementById("login")
         const h1 = document.createElement("h1")
         h1.innerText = "What is your name?"
