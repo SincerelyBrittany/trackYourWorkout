@@ -84,10 +84,33 @@ class Workouts{
     fetchAndLoadWorkouts(){
         this.adapter.getWorkouts().then(workouts =>{
             workouts.forEach(workout => {
+                if (workout.id === state.user.id){
                 if (this.workouts[workout.update_date]) {
                     this.workouts[workout.update_date].push(new Workout(workout))
                 } else {
                     this.workouts = {...this.workouts, [workout.update_date]: [new Workout(workout)]}
+                }
+            } else {
+                console.log(workout.id, "the workout id")
+                console.log(state.user.id, "this state id")
+            }
+            })
+        })
+        .then(() =>{
+            this.render()
+        })
+    }
+
+
+      fetchAndLoadWorkouts(){
+        this.adapter.getWorkouts().then(workouts =>{
+            workouts.forEach(workout => {
+                if (workout.user_id === state.user.id ){
+                if (this.workouts[workout.update_date]) {
+                    this.workouts[workout.update_date].push(new Workout(workout))
+                } else {
+                    this.workouts = {...this.workouts, [workout.update_date]: [new Workout(workout)]}
+                }
                 }
             })
         })
@@ -96,11 +119,38 @@ class Workouts{
         })
     }
 
+
+    // fetchAndLoadWorkouts(){
+    //     this.adapter.getWorkouts().then(workouts =>{
+    //         workouts.forEach(workout => {
+    //             debugger
+    //             if (workout.id === state.user.id && this.workouts[workout.update_date]) {
+    //                 this.workouts[workout.update_date].push(new Workout(workout))
+    //             } else if (workout.id === state.user.id && !this.workouts[workout.update_date]) {
+    //                 this.workouts = {...this.workouts, [workout.update_date]: [new Workout(workout)]}
+    //             } else {
+    //             console.log(workout.id, "the workout id")
+    //             console.log(state.user.id, "this state id")
+    //         }
+    //         })
+    //     })
+    //     .then(() =>{
+    //         this.render()
+    //     })
+    // }
+
     render(){
         const workoutString = Object.keys(this.workouts).map((date) => {
            return `<button type="button" class="collapsible">${date}</button><div id="all-workouts">
             ${this.workouts[date].map((work) => work.renderHTML()).join(' ')}</div>`
         }).join(' ')
+            // debugger
+            // console.log(date)})
+    //     return `<button type="button" class="collapsible">${date}</button><div id="all-workouts">
+    //     ${this.workouts[date].map((work) => work.renderHTML()).join(' ')}</div>`
+    // }).join(' ')
+
+
         // const workoutArray = this.workouts.map(workout => workout.renderHTML()).join(' ')
         // console.log(workoutString, "this is workout")
         this.workoutContainer.innerHTML = `${workoutString}`
