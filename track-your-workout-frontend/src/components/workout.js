@@ -4,7 +4,6 @@ class Workout{
         this.date = workoutJson.update_date
         this.user = workoutJson.user.username
         this.workout = workoutJson.workout
-        // debugger
     }
 
     renderHTML(){
@@ -15,7 +14,5 @@ class Workout{
                 <iframe width="420" height="315" src="${this.workout.url}/embed" frameborder="0" allowfullscreen></iframe>
                 <p> The time is ${this.workout.time_updated} </p>
         </div>`
-        // }
     }   
-
 }
