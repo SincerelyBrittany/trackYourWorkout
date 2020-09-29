@@ -1,5 +1,6 @@
 class Workouts{
     constructor(){
+        this.workoutArray = []
         this.workouts = {}
         this.adapter = new WorkoutsAdapter()
         this.initBindingsAndEventListeners()
@@ -16,6 +17,10 @@ class Workouts{
         this.coll = document.getElementsByClassName("collapsible");
         this.deleteButton = document.getElementsByClassName("close")
         this.deleteFunc.bind(this)
+        this.editButton = document.getElementsByClassName("new-edit")
+        this.editFunc.bind(this)
+        console.log(this.deleteButton)
+        console.log(this.editButton)
         // this.newWorkoutCategoryInput = document.getElementById("workout-category")
     }
 
@@ -75,6 +80,7 @@ class Workouts{
 
       fetchAndLoadWorkouts(){
         this.adapter.getWorkouts().then(workouts =>{
+            this.workoutArray.push(workouts)
             workouts.forEach(workout => {
                 if (workout.user_id === state.user.id ){
                 if (this.workouts[workout.update_date]) {
@@ -97,6 +103,7 @@ class Workouts{
         this.workoutContainer.innerHTML = `${workoutString}`
         this.collapseFunc()
         this.deleteFunc()
+        this.editFunc()
     }
 
     collapseFunc(){
@@ -113,6 +120,79 @@ class Workouts{
             });
         }
     }
+
+    editFunc(){
+        const that = this
+        let i;
+         for (i = 0; i < this.editButton.length; i++) {
+          this.editButton[i].addEventListener("click", function() {
+                const theDivElement = this.parentElement
+                const theDivID = this.parentElement.dataset.setId
+                that.openModal(theDivID, theDivElement)
+               })
+        }
+    }
+
+    openModal(user_workout_id, div){
+        let modal = document.getElementById("myModal");
+        let modalContent = document.querySelector(".modal-content")
+        let updateform = document.createElement("form")
+        let span = document.getElementsByClassName("close")[0];
+        let currentWorkout = []
+        this.workoutArray[0].forEach(function(id) {
+            if (id.id == user_workout_id){
+                currentWorkout.push(id)
+            }
+          })
+        updateform.innerHTML = 
+        `
+        <input id="workout-name" type="text" value="${currentWorkout[0].workout.name}" name="name"/>
+        <input id="workout-url" type="text" value="${currentWorkout[0].workout.url}" name="url"/>
+          <input type="datetime-local" id="meeting-time"
+          name="meeting" value="${currentWorkout[0].date}" max=""
+          max="2030-06-14T00:00">
+        <input type="submit"/>`
+      modalContent.appendChild(updateform)
+      modal.style.display = "block";
+  
+        span.onclick = function() {
+            modal.style.display = "none";
+            modal.querySelector("form").remove()
+         }
+
+         updateform.addEventListener("submit", (e)=>{
+            e.preventDefault();
+            // console.log(div)
+            // console.log(this, "this is this")
+            // console.log(e.target.name)
+            const data = {
+                id: user_workout_id,
+                name: e.target.name.value,
+                url: e.target.url.value,
+                date: e.target.meeting.value,
+                time: e.target.meeting.value,
+            }
+            this.adapter.editWorkout(data).then((workout) => {
+                if (this.workouts[workout.update_date]) {
+                    this.workouts[workout.update_date].push(new Workout(workout))
+                    div.remove()
+                    //have to remove div from the this.workouts
+                    this.render()
+                } else {
+                    this.workouts = {...this.workouts, [workout.update_date]: [new Workout(workout)]}
+                    div.remove()
+                      //have to remove div from the this.workouts
+                    this.render()
+                }
+                // debugger
+                // this.fetchAndLoadWorkouts() 
+                // this.workouts = {}
+            })
+        })
+    }
+
+
+
 
     deleteFunc(){
         const that = this
