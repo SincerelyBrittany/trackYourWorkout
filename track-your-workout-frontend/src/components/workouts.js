@@ -4,7 +4,7 @@ class Workouts{
         this.adapter = new WorkoutsAdapter()
         this.initBindingsAndEventListeners()
         this.renderForm()
-        this.fetchAndLoadWorkouts()  
+        // this.fetchAndLoadWorkouts()  
     }
     
     initBindingsAndEventListeners(){
