@@ -24,6 +24,7 @@ class Login {
         this.adapter.postUser(e.target.username.value).then(user => {
             state.user = user 
             new Workouts()
+            new Search()
         })
     }
 }
