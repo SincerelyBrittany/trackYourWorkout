@@ -19,7 +19,8 @@ class NavBar{
         nav.innerHTML = `
                 <button id="workout-btn"> workouts </button> 
                 <button id="search-btn"> search </button>
-                <button id="logout-btn"> logout </button>`
+                `
+                // <button id="logout-btn"> logout </button>
     }
 
     initBindingsAndEventListeners(){
