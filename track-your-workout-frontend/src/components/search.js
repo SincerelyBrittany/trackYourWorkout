@@ -64,8 +64,16 @@ class Search{
         debugger
         let modal = document.getElementById("myModal");
         let modalContent = document.querySelector(".modal-content")
-        let updateform = document.createElement("form")
-        
+        let createform = document.createElement("form")
+        createform.innerHTML = `
+        <input id="workout-name" type="text" value="${title}" name="name"/>
+        <input type="hidden" id="workout-url" type="text" name="url" value="https://www.youtube.com/embed/${id}">
+          <input type="datetime-local" id="meeting-time"
+          name="meeting" value="2020-09-14T00:00" min="2020-09-14T00:00"
+          max="2030-06-14T00:00">
+        <input type="submit"/>`
+        modalContent.appendChild(updateform)
+        modal.style.display = "block";
  
     }
 
