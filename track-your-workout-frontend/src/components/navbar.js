@@ -44,22 +44,40 @@ class NavBar{
         this.workoutContainer = document.getElementById('workout-container')
     }
 
+    // toggle(){
+    //     if (this.searchContainerForm.children.length === 0 && this.workoutContainerForm.children.length === 0){
+    //         this.renderSearch()
+    //         this.renderWorkouts()
+    //     } else if (this.workoutContainerForm.children.length === 0 && this.searchContainerForm.children.length != 0){
+    //         this.renderWorkouts()
+    //     } else (this.workoutContainerForm.children.length != 0 && this.searchContainerForm.children.length != 0)
+    //         this.renderSearch()
+    // }
+
     toggle(){
-        if (this.searchContainerForm.children.length === 0 && this.workoutContainerForm.children.length === 0){
+        if (page.name === "home"){
             this.renderSearch()
             this.renderWorkouts()
-        } else if (this.workoutContainerForm.children.length === 0 && this.searchContainerForm.children.length != 0){
+        } else if (page.name === "workouts"){
             this.renderWorkouts()
-        } else (this.workoutContainerForm.children.length != 0 && this.searchContainerForm.children.length != 0)
+        } else if (page.name === "search"){
             this.renderSearch()
+        }
+        else{
+            debugger
+        }
     }
        
         // const logoutBtn = document.getElementById("logout-btn")
     renderWorkouts = () => {
         this.workBtn.addEventListener("click", () =>{
+            page.name = "search"
             this.searchFormContainerForm.innerHTML = "" 
             this.searchContainerForm.innerHTML = ""
             if (this.workoutContainerForm.children.length === 0){
+                this.workBtn.disabled = true;
+                this.searchBtn.disabled = false;
+                console.log(page.name), "render workouts"
                 new Workouts()
             }
         })
@@ -67,10 +85,18 @@ class NavBar{
 
     renderSearch = () => {
         this.searchBtn.addEventListener("click", () =>{
+            page.name = "workouts"
             this.workoutContainer.innerHTML= ""
             this.workoutContainerForm.innerHTML = ""
-            if (this.searchFormContainerForm.children.length === 0){
+            if (this.searchContainerForm.children.length === 0){
+                console.log(this.searchBtn.disabled, "search button diabled?")
+                this.workBtn.disabled = false;
+                this.searchBtn.disabled = true;
+                console.log(this.searchBtn.disabled, "search button disabled?")
+                console.log(page.name)
                 new Search()
+            } else {
+                debugger
             }
         })
     }
