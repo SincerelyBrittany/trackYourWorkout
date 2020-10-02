@@ -5,7 +5,7 @@ class YoutubeAdapter {
     }
 
     searchYoutube(params){
-        return fetch(`https://www.googleapis.com/youtube/v3/search?part=snippet&maxResults=25&order=relevance&q=${params}&type=video&videoEmbeddable=true&videoSyndicated=true&key=${YOUTUBEAPIKEY}`, {
+        return fetch(`https://www.googleapis.com/youtube/v3/search?part=snippet&maxResults=5&order=relevance&q=${params}&type=video&videoEmbeddable=true&videoSyndicated=true&key=${YOUTUBEAPIKEY}`, {
           })
           .then(res=> res.json())
     }
