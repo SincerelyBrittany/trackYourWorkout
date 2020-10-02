@@ -1,7 +1,6 @@
 class Workouts{
     constructor(){
         this.workouts = {}
-        new NavBar
         this.adapter = new WorkoutsAdapter()
         this.initBindingsAndEventListeners()
         this.renderForm()
