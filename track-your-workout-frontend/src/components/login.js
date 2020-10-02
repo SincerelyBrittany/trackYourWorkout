@@ -23,8 +23,9 @@ class Login {
         console.log(this, "this is the this in login")
         this.adapter.postUser(e.target.username.value).then(user => {
             state.user = user 
-            new Workouts()
-            new Search()
+            new NavBar
+            // new Workouts()
+            // new Search()
         })
     }
 }
