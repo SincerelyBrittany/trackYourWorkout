@@ -9,8 +9,8 @@ class Workouts{
     }
     
     initBindingsAndEventListeners(){
-        const container = document.querySelector(".container")
-        container.style.display = "block"
+        // const container = document.querySelector(".container")
+        // container.style.display = "block"
         this.workoutContainerForm = document.getElementById('new-workout-container')
         this.workoutContainer = document.getElementById('workout-container')
         this.coll = document.getElementsByClassName("collapsible");
