@@ -1,10 +1,12 @@
 class Search{
     constructor(){
+        new NavBar
         this.search = {}
         this.searchArr = []
         this.adapter = new YoutubeAdapter()
         this.initBindingsAndEventListeners()
         this.renderForm()
+        // this.openModal = openModal()
         // console.log(this.searchArr)
         // console.log(this.search)
         // this.fetchAndLoadWorkouts()  
@@ -26,8 +28,9 @@ class Search{
         this.searchForm.addEventListener("submit", this.searchForWorkout.bind(this))
     }
 
-    searchForWorkout(e){
+    searchForWorkout = (e) => {
         e.preventDefault()
+        const that = this
         this.querySearch = document.getElementById("query").value
         this.adapter.searchYoutube(this.querySearch).then((videos) => {
             videos["items"].forEach(video => { 
@@ -36,13 +39,34 @@ class Search{
                 const arr = newSearch
                 this.searchArr.push(arr)
                 const searchString = this.searchArr.map((video) => {
-                    return `<div>${video.videoTitle}</div>
+                    return `
+                    <div class="search-result-container">
+                    <h3>${video.videoTitle}</h3>
                     <iframe width="420" height="315" src="https://www.youtube.com/embed/${video.videoID}" frameborder="0" allowfullscreen></iframe>
-                    <button "data-set-id="${video.videoID}"> Select <button>`
+                    <button data-set-id="${video.videoID}" class="btn"> Select </button>
+                    </div>`
                 }).join(' ')
                 this.searchContainerForm.innerHTML = `${searchString}`
+                const buttons = document.querySelectorAll('.btn')
+                    buttons.forEach(function(currentBtn){
+                    currentBtn.addEventListener('click', (e)=>{
+                        // debugger
+                        const id = e.currentTarget.dataset.setId
+                        const title = e.currentTarget.parentElement.children[0].innerText
+                        that.openModal(id, title)
+                    })
+                })
             })
         })
+    }
+
+    openModal = (id, title) => {
+        debugger
+        let modal = document.getElementById("myModal");
+        let modalContent = document.querySelector(".modal-content")
+        let updateform = document.createElement("form")
+        
+ 
     }
 
 }
