@@ -1,6 +1,7 @@
 class App{
     constructor(){
-        this.login = new Login()
+        // this.login = new Login()
+        this.nav = new NavBar()
     }
 }
 
