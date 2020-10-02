@@ -17,8 +17,18 @@ class NavBar{
     renderNavBar(){
         let nav = document.querySelector("nav")
         nav.innerHTML = `
-                <button id="workout-btn"> workouts </button> 
-                <button id="search-btn"> search </button>
+                <nav class="navbar navbar-expand-lg">
+                
+                <ul class="navbar-nav justify-content-around w-100">
+               
+                <li class="nav-item">
+                <button id="workout-btn" class="nav-item nav-link btn"> workouts </button> 
+                </li>
+                <li class="nav-item">
+                <button id="search-btn" class="nav-item nav-link btn"> search </button>
+                </li>
+                </ul>
+                </nav>
                 `
                 // <button id="logout-btn"> logout </button>
     }
@@ -49,7 +59,11 @@ class NavBar{
         this.workBtn.addEventListener("click", () =>{
             this.searchFormContainerForm.innerHTML = "" 
             this.searchContainerForm.innerHTML = ""
+            this.workoutContainer.innerHTML= ""
+            this.workoutContainerForm.innerHTML = ""
             if (this.workoutContainerForm.children.length === 0){
+                this.workBtn.disabled = true;
+                this.searchBtn.disabled = false;
                 new Workouts()
             }
         })
@@ -60,6 +74,8 @@ class NavBar{
             this.workoutContainer.innerHTML= ""
             this.workoutContainerForm.innerHTML = ""
             if (this.searchFormContainerForm.children.length === 0){
+                this.searchBtn.disabled = true;
+                this.workBtn.disabled = false;
                 new Search()
             }
         })
