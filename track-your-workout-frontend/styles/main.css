@@ -1,10 +1,63 @@
-body{
-  /* background-color: black; */
+:root {
+  --color-orange: #EAE7DC;
+  --color-aqua: #9be0db;
+  --light-grey: #746d5aa8;
+  --theme-pink: hsla(359, 77%, 19%, 0.561);
+  --theme-tan: #D8C3A5;
+  /* background-color: var(--color-orange) */
 }
+
+body{
+  background-color: #540B0C;
+  background-image: url(https://st2.depositphotos.com/9527076/12335/i/950/depositphotos_123358842-stock-photo-fitness-workout-background-dumbbells-on.jpg);
+}
+
+.card-group {
+  display:flex;
+  flex-wrap: wrap;
+  justify-content: space-around;
+}
+
+.card{
+  margin: 10px;
+  /* background-color: lightblue; */
+  border-radius: 10px;
+}
+
+
+/* .card{
+  width: 275px;
+  height: 180px;
+} */
+
+/* #workout-btn{
+
+} */
+
+/* #search-btn{
+
+} */
 
 /* #new-workout-container{
   background-color: rgb(120, 123, 163);
 } */
+
+nav {
+  overflow: hidden;
+  /* background-color: #333; */
+  background-color: var(--light-grey);
+  font-family: Arial;
+}
+
+nav button{
+  float: left;
+  font-size: 16px;
+  color: white;
+  text-align: center;
+  padding: 14px 16px;
+  text-decoration: none;
+}
+
 
 form {
   padding: 37.5px;
@@ -35,18 +88,18 @@ input{
 }
 
 .container{
-  width: 600px;
+  width: 800px;
   position: absolute;
   text-align: center;
-  margin-left: 25%;
-  background-color: rgb(161, 161, 163);
- 
+  margin-left: 20%;
+  /* background-color: rgb(161, 161, 163); */
+  background-color: var(--theme-tan)
 }
 
 .collapsible {
   border-radius: 25px;
   text-align: center;
-  background-color: rgb(120, 123, 163);
+  background-color: var(--light-grey);
   color: #444;
   cursor: pointer;
   padding: 18px;
@@ -58,7 +111,7 @@ input{
 
 /* Add a background color to the button if it is clicked on (add the .active class with JS), and when you move the mouse over it (hover) */
 .active, .collapsible:hover {
-  background-color: #ccc;
+  background-color: var(--theme-pink);
 }
 
 /* Style the collapsible content. Note: hidden by default */
@@ -71,13 +124,13 @@ input{
 
 .close {
   cursor: pointer;
-  background-color: blue;
+  background-color: var(--theme-pink);
   border-radius: 30px;
   position: absolute;
-  /* top: 50%; */
+  /* top: 1%; */
   right: 0%;
   padding: 5px 16px;
-  transform: translate(0%, -50%);
+  transform: translate(-300%, 600%);
 }
 
 .close:hover {background: #bbb;}
@@ -106,3 +159,18 @@ input{
   border: 1px solid #888;
   width: 80%; /* Could be more or less, depending on screen size */
 }
+
+/* The Close Button
+.close {
+  color: #aaa;
+  float: right;
+  font-size: 28px;
+  font-weight: bold;
+}
+
+.close:hover,
+.close:focus {
+  color: black;
+  text-decoration: none;
+  cursor: pointer;
+} */
