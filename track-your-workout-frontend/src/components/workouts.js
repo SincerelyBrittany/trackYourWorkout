@@ -1,14 +1,14 @@
 class Workouts{
     constructor(){
         this.workouts = {}
+        new NavBar
         this.adapter = new WorkoutsAdapter()
         this.initBindingsAndEventListeners()
         this.renderForm()
-        // this.fetchAndLoadWorkouts()  
+        this.fetchAndLoadWorkouts()  
     }
     
     initBindingsAndEventListeners(){
-        document.getElementById("login").remove()
         const container = document.querySelector(".container")
         container.style.display = "block"
         this.workoutContainerForm = document.getElementById('new-workout-container')
