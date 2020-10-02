@@ -17,8 +17,18 @@ class NavBar{
     renderNavBar(){
         let nav = document.querySelector("nav")
         nav.innerHTML = `
-                <button id="workout-btn"> workouts </button> 
-                <button id="search-btn"> search </button>
+                <nav class="navbar navbar-expand-lg">
+                
+                <ul class="navbar-nav justify-content-around w-100">
+               
+                <li class="nav-item">
+                <button id="workout-btn" class="nav-item nav-link btn"> workouts </button> 
+                </li>
+                <li class="nav-item">
+                <button id="search-btn" class="nav-item nav-link btn"> search </button>
+                </li>
+                </ul>
+                </nav>
                 `
                 // <button id="logout-btn"> logout </button>
     }
