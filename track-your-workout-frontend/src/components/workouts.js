@@ -75,13 +75,13 @@ class Workouts{
       fetchAndLoadWorkouts(){
         this.adapter.getWorkouts().then(workouts =>{
             workouts.forEach(workout => {
-                if (workout.user_id === state.user.id ){
+                // if (workout.user_id === state.user.id ){
                 if (this.workouts[workout.update_date]) {
                     this.workouts[workout.update_date].push(new Workout(workout))
                 } else {
                     this.workouts = {...this.workouts, [workout.update_date]: [new Workout(workout)]}
                 }
-                }
+                // }
             })
         })
         .then(() =>{
@@ -93,7 +93,7 @@ class Workouts{
            return `<button type="button" class="collapsible">${date}</button><div id="all-workouts">
             ${this.workouts[date].map((work) => work.renderHTML()).join(' ')}</div>`
         }).join(' ')
-        this.workoutContainer.innerHTML = `${workoutString}`
+        this.workoutContainer.innerHTML = `<h2>Your Planned Workouts: </h2>${workoutString}`
         this.collapseFunc()
         this.deleteFunc()
     }
