@@ -13,6 +13,7 @@
   <title>Track Your Workout</title>
   <link href="styles/main.css" rel="stylesheet">
   <script src='./config.js'></script>
+  <script src="src/components/navbar.js"></script>
   <script src="src/components/login.js"></script>
   <script src="src/components/workout.js"></script>
   <script src="src/components/workouts.js"></script>
@@ -27,6 +28,7 @@
 
 <body>
 <div id="login"></div>
+  <nav></nav>
     <div class ="container">
       <h1> Your Workout Tracker</h1>
       <div id="search-form-container">
@@ -41,6 +43,14 @@
       </div>
       <h2>Your Planned Workouts: </h2>
       <div id="workout-container"> </div>
+      <div id="myModal" class="modal">
+
+        <!-- Modal content -->
+        <div class="modal-content">
+          <span class="close">&times;</span>
+          <p>Some text in the Modal..</p>
+        </div>
+      </div>
   </div>
 
 <!-- <script src="src/script.js"></script>
