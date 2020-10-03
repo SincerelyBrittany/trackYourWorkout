@@ -1,17 +1,12 @@
 class Search{
     constructor(){
-        this.nav = new NavBar()
+        new NavBar()
         this.search = {}
         this.searchArr = []
         this.adapter = new YoutubeAdapter()
         this.initBindingsAndEventListeners()
         this.renderForm()
         this.workoutsAdapter = new WorkoutsAdapter()
-        // this.workoutsAdapter = new workoutsAdapter()
-        // this.openModal = openModal()
-        // console.log(this.searchArr)
-        // console.log(this.search)
-        // this.fetchAndLoadWorkouts()  
     }
 
     initBindingsAndEventListeners(){
@@ -27,11 +22,9 @@ class Search{
             <input id="query" type="text" placeholder="query" required/>
             <input type="submit"/>
         </form>`
-        
         // if (this.searchContainerForm.children.length === 0){
             const searchForm = document.getElementById('new-search-form')
             this.searchEventListener(searchForm)
-            //.bind(this)
             // this.searchForm.addEventListener("submit", this.searchForWorkout.bind(this))
         // } 
     }
@@ -63,11 +56,8 @@ class Search{
                 }).join(' ')
                 this.searchContainerForm.innerHTML = `${searchString}`
                 const allBtns = document.querySelectorAll('.search-btn')
-                // debugger
-                allBtns.forEach(function(currentBtn){
-                    // debugger
-                    currentBtn.addEventListener('click', (e)=>{
-                        // debugger
+                      allBtns.forEach(function(currentBtn){
+                        currentBtn.addEventListener('click', (e)=>{
                         const id = e.currentTarget.dataset.setId
                         const title = e.currentTarget.parentElement.children[0].innerText
                         that.openModal(id, title)
@@ -111,22 +101,10 @@ class Search{
             const time = document.getElementById("meeting-time").value
             const date = document.getElementById("meeting-time").value
             this.workoutsAdapter.createWorkout(name, url, time, date).then(workout => { 
-                console.log(workout)
                 modal.style.display = "none";
                 page.name = "search"
-                // debugger
                 new Workouts()
-                // this.nav
-                // this.nav
             })
         })
- 
     }
-
 }
-
-        // videoID: video.id.videoId,
-            // let videoTitle = video.snippet.title,
-            // let description = video.snippet.description,
-            // let image = video.snippet.thumbnails.medium)
-            // debugger
