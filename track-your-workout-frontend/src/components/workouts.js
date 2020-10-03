@@ -74,7 +74,6 @@ class Workouts{
     }
 
       fetchAndLoadWorkouts(){
-          debugger
         this.adapter.getWorkouts().then(workouts =>{
             workouts.forEach(workout => {
                 if (workout.user_id === state.user.id ){
