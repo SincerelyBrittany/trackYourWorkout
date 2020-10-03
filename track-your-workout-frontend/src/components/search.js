@@ -25,24 +25,20 @@ class Search{
         // if (this.searchContainerForm.children.length === 0){
             const searchForm = document.getElementById('new-search-form')
             this.searchEventListener(searchForm)
-            
             // this.searchForm.addEventListener("submit", this.searchForWorkout.bind(this))
         // } 
     }
 
-    searchEventListener(searchForm){ 
-        searchForm.addEventListener("submit", () => {
-            this.searchForWorkout.bind(this)
-            const searchForm = document.getElementById('new-search-form')
-            searchForm.reset()
-        })
-    }
+    searchEventListener(searchForm){  
+        searchForm.addEventListener("submit", this.searchForWorkout.bind(this))
+   }
 
     searchForWorkout = (e) => {
         e.preventDefault()
         const that = this
         this.querySearch = document.getElementById("query").value
         const searchForm = document.getElementById('new-search-form')
+        searchForm.reset()
         if(this.searchArr.length === 0){
         this.adapter.searchYoutube(this.querySearch).then((videos) => {
             videos["items"].forEach(video => { 
@@ -59,8 +55,6 @@ class Search{
                     </div>`
                 }).join(' ')
                 this.searchContainerForm.innerHTML = `${searchString}`
-                searchForm.reset()
-                this.searchEventListener(searchForm)
                 const allBtns = document.querySelectorAll('.search-btn')
                       allBtns.forEach(function(currentBtn){
                         currentBtn.addEventListener('click', (e)=>{
@@ -112,5 +106,7 @@ class Search{
                 new Workouts()
             })
         })
+
     }
+
 }
