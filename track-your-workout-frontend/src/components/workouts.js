@@ -1,7 +1,6 @@
 class Workouts{
     constructor(){
         new NavBar
-        page.name = "search"
         this.workouts = {}
         this.adapter = new WorkoutsAdapter()
         this.initBindingsAndEventListeners()
@@ -39,11 +38,11 @@ class Workouts{
     renderForm(){
         this.workoutContainerForm.innerHTML +=
         `<form id="new-workout-form">
-        <input id="workout-name" type="text" placeholder="name"/>
-        <input id="workout-url" type="text" placeholder="Enter embeded URL"/>
+        <input id="workout-name" type="text" placeholder="name" required/>
+        <input id="workout-url" type="text" placeholder="Enter embeded URL" required/>
           <input type="datetime-local" id="meeting-time"
           name="meeting-time" value="" max=""
-          max="2030-06-14T00:00">
+          max="2030-06-14T00:00" required>
         <input type="submit"/>
       </form>`
        this.workoutForm = document.getElementById('new-workout-form')

@@ -1,7 +1,6 @@
 class Search{
     constructor(){
-        new NavBar
-        page.name = "workouts"
+        this.nav = new NavBar()
         this.search = {}
         this.searchArr = []
         this.adapter = new YoutubeAdapter()
@@ -89,11 +88,11 @@ class Search{
         let createform = document.createElement("form")
         let span = document.getElementsByClassName("escape")[0];
         createform.innerHTML = `
-        <input id="workout-name" type="text" value="${title}" name="name"/>
-        <input type="hidden" id="workout-url" type="text" name="url" value="https://www.youtube.com/embed/${id}">
+        <input id="workout-name" type="text" value="${title}" name="name" required />
+        <input type="hidden" id="workout-url" type="text" name="url" value="https://www.youtube.com/embed/${id}" required>
           <input type="datetime-local" id="meeting-time"
           name="meeting" value="2020-09-14T00:00" min="2020-09-14T00:00"
-          max="2030-06-14T00:00">
+          max="2030-06-14T00:00" required>
         <input type="submit"/>`
         modalContent.appendChild(createform)
         modal.style.display = "block";
@@ -116,7 +115,7 @@ class Search{
                 modal.style.display = "none";
                 page.name = "workouts"
                 // debugger
-                this.nav.renderWorkouts()
+                this.nav
             })
         })
  

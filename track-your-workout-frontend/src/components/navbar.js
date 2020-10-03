@@ -74,11 +74,13 @@ class NavBar{
             this.searchFormContainerForm.innerHTML = "" 
             this.searchContainerForm.innerHTML = ""
             if (this.workoutContainerForm.children.length === 0){
+                page.name = "search"
                 this.workBtn.disabled = true;
                 this.searchBtn.disabled = false;
                 console.log((page.name), "render workouts")
                 new Workouts()
             } else if (this.workoutContainerForm.children.length === 1 && this.workoutContainer.children.length === 0){
+                page.name = "search"
                 this.workBtn.disabled = true;
                 this.searchBtn.disabled = false;
                 new Workouts()
@@ -95,6 +97,7 @@ class NavBar{
             this.workoutContainer.innerHTML= ""
             this.workoutContainerForm.innerHTML = ""
             if (this.searchContainerForm.children.length === 0){
+                page.name = "workouts"
                 console.log(this.searchBtn.disabled, "search button diabled?")
                 this.workBtn.disabled = false;
                 this.searchBtn.disabled = true;
