@@ -44,14 +44,28 @@ class NavBar{
         this.workoutContainer = document.getElementById('workout-container')
     }
 
+    // toggle(){
+    //     if (this.searchContainerForm.children.length === 0 && this.workoutContainerForm.children.length === 0){
+    //         this.renderSearch()
+    //         this.renderWorkouts()
+    //     } else if (this.workoutContainerForm.children.length === 0 && this.searchContainerForm.children.length != 0){
+    //         this.renderWorkouts()
+    //     } else (this.workoutContainerForm.children.length != 0 && this.searchContainerForm.children.length != 0)
+    //         this.renderSearch()
+    // }
+
     toggle(){
-        if (this.searchContainerForm.children.length === 0 && this.workoutContainerForm.children.length === 0){
+        if (page.name === "home"){
             this.renderSearch()
             this.renderWorkouts()
-        } else if (this.workoutContainerForm.children.length === 0 && this.searchContainerForm.children.length != 0){
+        } else if (page.name === "workouts"){
             this.renderWorkouts()
-        } else (this.workoutContainerForm.children.length != 0 && this.searchContainerForm.children.length != 0)
+        } else if (page.name === "search"){
             this.renderSearch()
+        }
+        else{
+            debugger
+        }
     }
        
         // const logoutBtn = document.getElementById("logout-btn")
@@ -60,7 +74,17 @@ class NavBar{
             this.searchFormContainerForm.innerHTML = "" 
             this.searchContainerForm.innerHTML = ""
             if (this.workoutContainerForm.children.length === 0){
+                page.name = "search"
+                this.workBtn.disabled = true;
+                this.searchBtn.disabled = false;
                 new Workouts()
+            } else if (this.workoutContainerForm.children.length === 1 && this.workoutContainer.children.length === 0){
+                page.name = "search"
+                this.workBtn.disabled = true;
+                this.searchBtn.disabled = false;
+                new Workouts()
+            } else {
+                debugger
             }
         })
     }
@@ -69,8 +93,13 @@ class NavBar{
         this.searchBtn.addEventListener("click", () =>{
             this.workoutContainer.innerHTML= ""
             this.workoutContainerForm.innerHTML = ""
-            if (this.searchFormContainerForm.children.length === 0){
+            if (this.searchContainerForm.children.length === 0){
+                page.name = "workouts"
+                this.workBtn.disabled = false;
+                this.searchBtn.disabled = true;
                 new Search()
+            } else {
+                debugger
             }
         })
     }

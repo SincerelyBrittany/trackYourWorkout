@@ -11,6 +11,19 @@ body{
   background-color: #540B0C;
   background-image: url(https://st2.depositphotos.com/9527076/12335/i/950/depositphotos_123358842-stock-photo-fitness-workout-background-dumbbells-on.jpg);
 }
+.loginh1{
+  color: black;
+  margin-top: 40px;
+}
+
+input#username {
+  background-color: #ffffff00;
+  color: var(--color-orange);
+  font-size: 5em;
+  text-align: center;
+  border: none;
+  border-bottom: solid;
+}
 
 .card-group {
   display:flex;
@@ -158,6 +171,17 @@ input{
   padding: 20px;
   border: 1px solid #888;
   width: 80%; /* Could be more or less, depending on screen size */
+}
+
+.search-btn{
+  cursor: pointer;
+  background-color: var(--theme-pink);
+  border-radius: 30px;
+  position: absolute;
+  /* top: 1%; */
+  right: 0%;
+  padding: 5px 16px;
+  transform: translate(-100%, 350%);
 }
 
 /* The Close Button

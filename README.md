@@ -12,7 +12,7 @@
 <br />
 <p align="center">
   <a href="https://www.example.com/">
-    <img src="https://github.com/SincerelyBrittany/trackYourWorkout/blob/master/track-your-workout-frontend/styles/workout_img.png" alt="Logo" width="80" height="80">
+    <img src="https://github.com/SincerelyBrittany/trackYourWorkout/blob/fix-search/track-your-workout-frontend/styles/workout_gif.gif" alt="Logo" >
   </a>
 
   <h3 align="center"> Track Your Workout</h3>

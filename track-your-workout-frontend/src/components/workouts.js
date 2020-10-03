@@ -8,6 +8,7 @@ class Workouts{
     }
     
     initBindingsAndEventListeners(){
+        new NavBar
         // const container = document.querySelector(".container")
         // container.style.display = "block"
         this.workoutContainerForm = document.getElementById('new-workout-container')
@@ -36,12 +37,16 @@ class Workouts{
 
     renderForm(){
         this.workoutContainerForm.innerHTML +=
-        `<form id="new-workout-form">
-        <input id="workout-name" type="text" placeholder="name"/>
-        <input id="workout-url" type="text" placeholder="Enter embeded URL"/>
+        
+        `
+        <h1> Welcome ${state.user.username} </h1>
+        <h2> Your Workout Tracker</h2>
+        <form id="new-workout-form">
+        <input id="workout-name" type="text" placeholder="name" required/>
+        <input id="workout-url" type="text" placeholder="Enter embeded URL" required/>
           <input type="datetime-local" id="meeting-time"
-          name="meeting-time" value="" max=""
-          max="2030-06-14T00:00">
+          name="meeting-time" value="2020-06-14T00:00" min="2020-06-14T00:00"
+          max="2030-06-14T00:00" required>
         <input type="submit"/>
       </form>`
        this.workoutForm = document.getElementById('new-workout-form')

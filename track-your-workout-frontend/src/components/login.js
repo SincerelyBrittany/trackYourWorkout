@@ -9,9 +9,11 @@ class Login {
         container.style.display = "none"
         const loginContainer = document.getElementById("login")
         const h1 = document.createElement("h1")
+        h1.className = "loginh1"
         h1.innerText = "What is your name?"
         const form = document.createElement("form")
         const input = document.createElement("input")
+        input.id = "username"
         input.name = "username"
         form.appendChild(input)
         form.addEventListener("submit", this.submit)
@@ -20,9 +22,9 @@ class Login {
 
     submit = (e) => {
         e.preventDefault()
-        console.log(this, "this is the this in login")
         this.adapter.postUser(e.target.username.value).then(user => {
             state.user = user 
+            page.name = "home"
             new NavBar()
             // new Workouts()
             // new Search()

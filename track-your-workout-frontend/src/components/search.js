@@ -1,39 +1,44 @@
 class Search{
     constructor(){
-        new NavBar
+        new NavBar()
         this.search = {}
         this.searchArr = []
         this.adapter = new YoutubeAdapter()
         this.initBindingsAndEventListeners()
         this.renderForm()
         this.workoutsAdapter = new WorkoutsAdapter()
-        // this.workoutsAdapter = new workoutsAdapter()
-        // this.openModal = openModal()
-        // console.log(this.searchArr)
-        // console.log(this.search)
-        // this.fetchAndLoadWorkouts()  
     }
 
     initBindingsAndEventListeners(){
         this.searchFormContainerForm = document.getElementById('search-form-container')
         this.searchContainerForm = document.getElementById('search-container')
+        this.searchBtn = document.getElementById("search-btn")
+        this.searchBtn.disabled = false;
     }
 
     renderForm(){
         this.searchFormContainerForm.innerHTML +=
-        `<form id="new-search-form">
-            <input id="query" type="text" placeholder="query"/>
+        `<h1> Search for a Workout </h1> <form id="new-search-form">
+            <input id="query" type="text" placeholder="Search for a workout here" required/>
             <input type="submit"/>
         </form>`
-        this.searchForm = document.getElementById('new-search-form')
-        console.log(this.searchForm, "this is the seach form")
-        this.searchForm.addEventListener("submit", this.searchForWorkout.bind(this))
+        // if (this.searchContainerForm.children.length === 0){
+            const searchForm = document.getElementById('new-search-form')
+            this.searchEventListener(searchForm)
+            // this.searchForm.addEventListener("submit", this.searchForWorkout.bind(this))
+        // } 
     }
+
+    searchEventListener(searchForm){  
+        searchForm.addEventListener("submit", this.searchForWorkout.bind(this))
+   }
 
     searchForWorkout = (e) => {
         e.preventDefault()
         const that = this
         this.querySearch = document.getElementById("query").value
+        const searchForm = document.getElementById('new-search-form')
+        if(this.searchArr.length === 0){
         this.adapter.searchYoutube(this.querySearch).then((videos) => {
             videos["items"].forEach(video => { 
                 const newSearch = new SearchObj(video)
@@ -45,14 +50,13 @@ class Search{
                     <div class="search-result-container">
                     <h3>${video.videoTitle}</h3>
                     <iframe width="420" height="315" src="https://www.youtube.com/embed/${video.videoID}" frameborder="0" allowfullscreen></iframe>
-                    <button data-set-id="${video.videoID}" class="btn"> Select </button>
+                    <button data-set-id="${video.videoID}" class="search-btn"> Select </button>
                     </div>`
                 }).join(' ')
                 this.searchContainerForm.innerHTML = `${searchString}`
-                const buttons = document.querySelectorAll('.btn')
-                    buttons.forEach(function(currentBtn){
-                    currentBtn.addEventListener('click', (e)=>{
-                        // debugger
+                const allBtns = document.querySelectorAll('.search-btn')
+                      allBtns.forEach(function(currentBtn){
+                        currentBtn.addEventListener('click', (e)=>{
                         const id = e.currentTarget.dataset.setId
                         const title = e.currentTarget.parentElement.children[0].innerText
                         that.openModal(id, title)
@@ -60,21 +64,32 @@ class Search{
                 })
             })
         })
+        } else {
+            this.searchArr = []
+            this.searchContainerForm.innerHTML = ""
+            this.searchEventListener(searchForm)
+        }
     }
 
     openModal = (id, title) => {
         let modal = document.getElementById("myModal");
         let modalContent = document.querySelector(".modal-content")
         let createform = document.createElement("form")
+        let span = document.getElementsByClassName("escape")[0];
         createform.innerHTML = `
-        <input id="workout-name" type="text" value="${title}" name="name"/>
-        <input type="hidden" id="workout-url" type="text" name="url" value="https://www.youtube.com/embed/${id}">
+        <input id="workout-name" type="text" value="${title}" name="name" required />
+        <input type="hidden" id="workout-url" type="text" name="url" value="https://www.youtube.com/embed/${id}" required>
           <input type="datetime-local" id="meeting-time"
-          name="meeting" value="2020-09-14T00:00" min="2020-09-14T00:00"
-          max="2030-06-14T00:00">
+          name="meeting" value="2020-09-14T13:20" min="2020-06-14T00:00"
+          max="2030-06-14T00:00" required>
         <input type="submit"/>`
         modalContent.appendChild(createform)
         modal.style.display = "block";
+
+        span.onclick = function() {
+            modal.style.display = "none";
+            modal.querySelector("form").remove()
+         }
 
         createform.addEventListener("submit", (e)=>{
             e.preventDefault();
@@ -85,19 +100,11 @@ class Search{
             const time = document.getElementById("meeting-time").value
             const date = document.getElementById("meeting-time").value
             this.workoutsAdapter.createWorkout(name, url, time, date).then(workout => { 
-                console.log(workout)
                 modal.style.display = "none";
+                createform.remove()
+                page.name = "search"
                 new Workouts()
-                new NavBar()
             })
         })
- 
     }
-
 }
-
-        // videoID: video.id.videoId,
-            // let videoTitle = video.snippet.title,
-            // let description = video.snippet.description,
-            // let image = video.snippet.thumbnails.medium)
-            // debugger
