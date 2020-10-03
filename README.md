@@ -22,8 +22,8 @@
     <br />
     <!-- <a href="https://www.example.com/"><strong>Explore the docs »</strong></a>
     <br />
-    <br />
-    <a href="https://www.example.com/">View Demo</a> -->
+    <br />-->
+    <a href="https://www.youtube.com/watch?v=yA5mG-l8TuA&ab_channel=BuildWithBrittany">View Demo</a> 
     ·
     <a href="https://github.com/SincerelyBrittany//trackYourWorkout/issues">Report Bug</a>
     ·
