@@ -18,8 +18,8 @@ class Search{
 
     renderForm(){
         this.searchFormContainerForm.innerHTML +=
-        `<form id="new-search-form">
-            <input id="query" type="text" placeholder="query" required/>
+        `<h1> Search for a Workout </h1> <form id="new-search-form">
+            <input id="query" type="text" placeholder="Search for a workout here" required/>
             <input type="submit"/>
         </form>`
         // if (this.searchContainerForm.children.length === 0){
@@ -38,7 +38,6 @@ class Search{
         const that = this
         this.querySearch = document.getElementById("query").value
         const searchForm = document.getElementById('new-search-form')
-        searchForm.reset()
         if(this.searchArr.length === 0){
         this.adapter.searchYoutube(this.querySearch).then((videos) => {
             videos["items"].forEach(video => { 
@@ -81,7 +80,7 @@ class Search{
         <input id="workout-name" type="text" value="${title}" name="name" required />
         <input type="hidden" id="workout-url" type="text" name="url" value="https://www.youtube.com/embed/${id}" required>
           <input type="datetime-local" id="meeting-time"
-          name="meeting" value="2020-09-14T00:00" min="2020-09-14T00:00"
+          name="meeting" value="2020-09-14T13:20" min="2020-06-14T00:00"
           max="2030-06-14T00:00" required>
         <input type="submit"/>`
         modalContent.appendChild(createform)
@@ -106,7 +105,5 @@ class Search{
                 new Workouts()
             })
         })
-
     }
-
 }
