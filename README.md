@@ -12,7 +12,7 @@
 <br />
 <p align="center">
   <a href="https://www.example.com/">
-    <img src="https://github.com/SincerelyBrittany/trackYourWorkout/blob/fix-search/track-your-workout-frontend/styles/workout_gif.gif" alt="Logo" >
+    <img src="https://github.com/SincerelyBrittany/trackYourWorkout/blob/master/track-your-workout-frontend/styles/workout_img.png" alt="Logo" >
   </a>
 
   <h3 align="center"> Track Your Workout</h3>
@@ -180,4 +180,4 @@ Connect/Follow me:
 [twitter-url]: https://twitter.com/SincerelyBrittt
 [dev-to-url]: https://dev.to/sincerelybrittany
 [dev-to-shield]:https://img.shields.io/badge/-Dev.to-black.svg?style=flat-square&logo=dev.to&colorB=555
-[product-screenshot]: https://github.com/SincerelyBrittany/trackYourWorkout/blob/master/track-your-workout-frontend/styles/workout_img.png
+[product-screenshot]: https://github.com/SincerelyBrittany/trackYourWorkout/blob/fix-search/track-your-workout-frontend/styles/workout_gif.gif
