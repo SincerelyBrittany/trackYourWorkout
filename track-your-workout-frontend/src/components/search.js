@@ -113,9 +113,11 @@ class Search{
             this.workoutsAdapter.createWorkout(name, url, time, date).then(workout => { 
                 console.log(workout)
                 modal.style.display = "none";
-                page.name = "workouts"
+                page.name = "search"
                 // debugger
-                this.nav
+                new Workouts()
+                // this.nav
+                // this.nav
             })
         })
  
