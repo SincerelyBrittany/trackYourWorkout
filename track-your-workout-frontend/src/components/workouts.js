@@ -1,6 +1,7 @@
 class Workouts{
     constructor(){
         new NavBar
+        page.name = "search"
         this.workouts = {}
         this.adapter = new WorkoutsAdapter()
         this.initBindingsAndEventListeners()
@@ -74,6 +75,7 @@ class Workouts{
     }
 
       fetchAndLoadWorkouts(){
+          debugger
         this.adapter.getWorkouts().then(workouts =>{
             workouts.forEach(workout => {
                 if (workout.user_id === state.user.id ){
