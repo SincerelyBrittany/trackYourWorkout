@@ -101,6 +101,7 @@ class Search{
             const date = document.getElementById("meeting-time").value
             this.workoutsAdapter.createWorkout(name, url, time, date).then(workout => { 
                 modal.style.display = "none";
+                createform.remove()
                 page.name = "search"
                 new Workouts()
             })
