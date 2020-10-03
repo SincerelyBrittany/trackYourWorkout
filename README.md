@@ -180,4 +180,4 @@ Connect/Follow me:
 [twitter-url]: https://twitter.com/SincerelyBrittt
 [dev-to-url]: https://dev.to/sincerelybrittany
 [dev-to-shield]:https://img.shields.io/badge/-Dev.to-black.svg?style=flat-square&logo=dev.to&colorB=555
-[product-screenshot]: https://github.com/SincerelyBrittany/trackYourWorkout/blob/master//trackYourWorkout/assets/images/Sep-16-2020%2017-22-22.gif
+[product-screenshot]: https://github.com/SincerelyBrittany/trackYourWorkout/blob/master/track-your-workout-frontend/styles/workout_img.png
