@@ -38,6 +38,7 @@ class Search{
         const that = this
         this.querySearch = document.getElementById("query").value
         const searchForm = document.getElementById('new-search-form')
+        searchForm.reset()
         if(this.searchArr.length === 0){
         this.adapter.searchYoutube(this.querySearch).then((videos) => {
             videos["items"].forEach(video => { 
