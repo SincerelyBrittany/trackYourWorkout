@@ -67,6 +67,8 @@ class Search{
         } else {
             this.searchArr = []
             this.searchContainerForm.innerHTML = ""
+            // searchForm.reset()
+            searchForm.removeEventListener()
             this.searchEventListener(searchForm)
         }
     }
@@ -101,7 +103,11 @@ class Search{
             const date = document.getElementById("meeting-time").value
             this.workoutsAdapter.createWorkout(name, url, time, date).then(workout => { 
                 modal.style.display = "none";
+                // this.search = {}
+                // this.searchArr = []
                 createform.remove()
+                // createform.reset()
+                // createform.removeEventListener()
                 page.name = "search"
                 new Workouts()
             })
