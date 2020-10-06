@@ -26,8 +26,6 @@ class Login {
             state.user = user 
             page.name = "home"
             new NavBar()
-            // new Workouts()
-            // new Search()
         })
     }
 }

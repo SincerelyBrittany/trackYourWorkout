@@ -30,7 +30,6 @@ class NavBar{
                 </ul>
                 </nav>
                 `
-                // <button id="logout-btn"> logout </button>
     }
 
     initBindingsAndEventListeners(){
@@ -43,16 +42,6 @@ class NavBar{
         this.workoutContainerForm = document.getElementById('new-workout-container')
         this.workoutContainer = document.getElementById('workout-container')
     }
-
-    // toggle(){
-    //     if (this.searchContainerForm.children.length === 0 && this.workoutContainerForm.children.length === 0){
-    //         this.renderSearch()
-    //         this.renderWorkouts()
-    //     } else if (this.workoutContainerForm.children.length === 0 && this.searchContainerForm.children.length != 0){
-    //         this.renderWorkouts()
-    //     } else (this.workoutContainerForm.children.length != 0 && this.searchContainerForm.children.length != 0)
-    //         this.renderSearch()
-    // }
 
     toggle(){
         if (page.name === "home"){
@@ -68,7 +57,6 @@ class NavBar{
         }
     }
        
-        // const logoutBtn = document.getElementById("logout-btn")
     renderWorkouts = () => {
         this.workBtn.addEventListener("click", () =>{
             this.searchFormContainerForm.innerHTML = "" 
@@ -103,19 +91,4 @@ class NavBar{
             }
         })
     }
-        
-        // logoutBtn.addEventListener("click", () =>{
-        //     const searchFormContainerForm = document.getElementById('search-form-container')
-        //     const searchContainerForm = document.getElementById('search-container')
-        //     searchFormContainerForm.innerHTML = "" 
-        //     searchContainerForm.innerHTML = ""
-        //     const workoutContainerForm = document.getElementById('new-workout-container')
-        //     const workoutContainer = document.getElementById('workout-container')
-        //     workoutContainer.innerHTML= ""
-        //     workoutContainerForm.innerHTML = ""
-        //     new Login()
-        // })
-    
- 
-
 }

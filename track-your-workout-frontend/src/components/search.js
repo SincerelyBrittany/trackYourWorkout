@@ -22,55 +22,52 @@ class Search{
             <input id="query" type="text" placeholder="Search for a workout here" required/>
             <input type="submit"/>
         </form>`
-        // if (this.searchContainerForm.children.length === 0){
             const searchForm = document.getElementById('new-search-form')
             this.searchEventListener(searchForm)
-            // this.searchForm.addEventListener("submit", this.searchForWorkout.bind(this))
-        // } 
     }
 
     searchEventListener(searchForm){  
         searchForm.addEventListener("submit", this.searchForWorkout.bind(this))
-   }
+    }
+
+    removeEventListener(searchForm){  
+        searchForm.removeEventListener("submit", this.searchForWorkout.bind(this))
+    }
 
     searchForWorkout = (e) => {
         e.preventDefault()
         const that = this
         this.querySearch = document.getElementById("query").value
         const searchForm = document.getElementById('new-search-form')
-        if(this.searchArr.length === 0){
-        this.adapter.searchYoutube(this.querySearch).then((videos) => {
-            videos["items"].forEach(video => { 
-                const newSearch = new SearchObj(video)
-                this.search[newSearch.videoID] = newSearch
-                const arr = newSearch
-                this.searchArr.push(arr)
-                const searchString = this.searchArr.map((video) => {
-                    return `
-                    <div class="search-result-container">
-                    <h3>${video.videoTitle}</h3>
-                    <iframe width="420" height="315" src="https://www.youtube.com/embed/${video.videoID}" frameborder="0" allowfullscreen></iframe>
-                    <button data-set-id="${video.videoID}" class="search-btn"> Select </button>
-                    </div>`
-                }).join(' ')
-                this.searchContainerForm.innerHTML = `${searchString}`
-                const allBtns = document.querySelectorAll('.search-btn')
-                      allBtns.forEach(function(currentBtn){
-                        currentBtn.addEventListener('click', (e)=>{
-                        const id = e.currentTarget.dataset.setId
-                        const title = e.currentTarget.parentElement.children[0].innerText
-                        that.openModal(id, title)
-                    })
+        searchForm.reset()
+        this.searchArr = []
+        this.searchContainerForm.innerHTML = ""
+        this.removeEventListener(searchForm)
+            this.adapter.searchYoutube(this.querySearch).then((videos) => {
+                videos["items"].forEach(video => { 
+                    const newSearch = new SearchObj(video)
+                    this.search[newSearch.videoID] = newSearch
+                    const arr = newSearch
+                    this.searchArr.push(arr)
+                })
+            const searchString = this.searchArr.map((video) => {
+                return `
+                <div class="search-result-container">
+                <h3>${video.videoTitle}</h3>
+                <iframe width="420" height="315" src="https://www.youtube.com/embed/${video.videoID}" frameborder="0" allowfullscreen></iframe>
+                <button data-set-id="${video.videoID}" class="search-btn"> Select </button>
+                </div>`
+            }).join(' ')
+            this.searchContainerForm.innerHTML = `${searchString}`
+            const allBtns = document.querySelectorAll('.search-btn')
+                    allBtns.forEach(function(currentBtn){
+                    currentBtn.addEventListener('click', (e)=>{
+                    const id = e.currentTarget.dataset.setId
+                    const title = e.currentTarget.parentElement.children[0].innerText
+                    that.openModal(id, title)
                 })
             })
         })
-        } else {
-            this.searchArr = []
-            this.searchContainerForm.innerHTML = ""
-            // searchForm.reset()
-            searchForm.removeEventListener()
-            this.searchEventListener(searchForm)
-        }
     }
 
     openModal = (id, title) => {
@@ -87,12 +84,10 @@ class Search{
         <input type="submit"/>`
         modalContent.appendChild(createform)
         modal.style.display = "block";
-
         span.onclick = function() {
             modal.style.display = "none";
             modal.querySelector("form").remove()
          }
-
         createform.addEventListener("submit", (e)=>{
             e.preventDefault();
             this.searchFormContainerForm.innerHTML = ""
@@ -103,11 +98,7 @@ class Search{
             const date = document.getElementById("meeting-time").value
             this.workoutsAdapter.createWorkout(name, url, time, date).then(workout => { 
                 modal.style.display = "none";
-                // this.search = {}
-                // this.searchArr = []
                 createform.remove()
-                // createform.reset()
-                // createform.removeEventListener()
                 page.name = "search"
                 new Workouts()
             })
