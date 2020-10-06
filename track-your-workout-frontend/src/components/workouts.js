@@ -9,14 +9,11 @@ class Workouts{
     
     initBindingsAndEventListeners(){
         new NavBar
-        // const container = document.querySelector(".container")
-        // container.style.display = "block"
         this.workoutContainerForm = document.getElementById('new-workout-container')
         this.workoutContainer = document.getElementById('workout-container')
         this.coll = document.getElementsByClassName("collapsible");
         this.deleteButton = document.getElementsByClassName("close")
         this.deleteFunc.bind(this)
-        // this.newWorkoutCategoryInput = document.getElementById("workout-category")
     }
 
 
@@ -37,22 +34,20 @@ class Workouts{
 
     renderForm(){
         this.workoutContainerForm.innerHTML +=
-        
         `
         <h1> Welcome ${state.user.username} </h1>
-        <h2> Your Workout Tracker</h2>
-        <form id="new-workout-form">
-        <input id="workout-name" type="text" placeholder="name" required/>
-        <input id="workout-url" type="text" placeholder="Enter embeded URL" required/>
-          <input type="datetime-local" id="meeting-time"
-          name="meeting-time" value="2020-06-14T00:00" min="2020-06-14T00:00"
-          max="2030-06-14T00:00" required>
-        <input type="submit"/>
-      </form>`
-       this.workoutForm = document.getElementById('new-workout-form')
+            <h2> Your Workout Tracker</h2>
+                <form id="new-workout-form">
+                    <input id="workout-name" type="text" placeholder="name" required/>
+                    <input id="workout-url" type="text" placeholder="Enter embeded URL" required/>
+                    <input type="datetime-local" id="meeting-time"
+                    name="meeting-time" value="2020-06-14T00:00" min="2020-06-14T00:00"
+                    max="2030-06-14T00:00" required>
+                    <input type="submit"/>
+            </form>`
+        this.workoutForm = document.getElementById('new-workout-form')
         this.workoutForm.addEventListener("submit", this.createWorkout.bind(this))
     }
-    
 
     createWorkout(e){
         e.preventDefault()
@@ -63,8 +58,6 @@ class Workouts{
         const name = this.newWorkoutNameInput.value
         const url = this.newWorkoutUrlInput.value
         const time = this.newMeetingTimeInput.value
-        // const username = state.user.id
-        // const category = this.newWorkoutCategoryInput.value
         const date = this.newMeetingTimeInput.value
         this.adapter.createWorkout(name, url, time, date).then(workout => {  
             if (this.workouts[workout.update_date]) {

@@ -2,8 +2,6 @@ class SearchObj{
     constructor(video){
          this.videoTitle = video.snippet.title
          this.videoID = video.id.videoId
-        //  this.description = video.snippet.description
-        //  this.image = video.snippet.thumbnails.medium)
     }
 
     renderSearchHTML(){
