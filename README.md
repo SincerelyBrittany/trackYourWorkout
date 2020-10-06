@@ -27,6 +27,8 @@
     ·
     <a href="https://www.youtube.com/watch?v=yA5mG-l8TuA&ab_channel=BuildWithBrittany">View Youtube Demo</a> 
     ·
+    <a href="https://dev.to/sincerelybrittany/javascript-and-rails-single-page-application-spa-3opc">Blog</a> 
+     ·
     <a href="https://github.com/SincerelyBrittany//trackYourWorkout/issues">Report Bug</a>
     ·
     <a href="https://github.com/SincerelyBrittany//trackYourWorkout/issues">Request Feature</a> 
