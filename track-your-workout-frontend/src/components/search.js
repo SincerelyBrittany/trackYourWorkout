@@ -39,13 +39,20 @@ class Search{
         this.querySearch = document.getElementById("query").value
         const searchForm = document.getElementById('new-search-form')
         searchForm.reset()
-        if(this.searchArr.length === 0){
+        // if(this.searchArr.length === 0){
+            this.searchArr = []
+            this.searchContainerForm.innerHTML = ""
+            // searchForm.reset()
+            searchForm.removeEventListener("submit", this.searchForWorkout.bind(this))
+            this.searchEventListener(searchForm)
+            console.log(this.searchArr, "This is searchArr")
         this.adapter.searchYoutube(this.querySearch).then((videos) => {
             videos["items"].forEach(video => { 
                 const newSearch = new SearchObj(video)
                 this.search[newSearch.videoID] = newSearch
                 const arr = newSearch
                 this.searchArr.push(arr)
+            })
                 const searchString = this.searchArr.map((video) => {
                     return `
                     <div class="search-result-container">
@@ -54,6 +61,7 @@ class Search{
                     <button data-set-id="${video.videoID}" class="search-btn"> Select </button>
                     </div>`
                 }).join(' ')
+                console.log(this.searchArr, "this is after the join")
                 this.searchContainerForm.innerHTML = `${searchString}`
                 const allBtns = document.querySelectorAll('.search-btn')
                       allBtns.forEach(function(currentBtn){
@@ -63,15 +71,16 @@ class Search{
                         that.openModal(id, title)
                     })
                 })
-            })
+            // })
         })
-        } else {
-            this.searchArr = []
-            this.searchContainerForm.innerHTML = ""
-            // searchForm.reset()
-            searchForm.removeEventListener()
-            this.searchEventListener(searchForm)
-        }
+        // } else {
+        //     console.log(this.searchArr, "we are inside of the else")
+        //     this.searchArr = []
+        //     this.searchContainerForm.innerHTML = ""
+        //     // searchForm.reset()
+        //     searchForm.removeEventListener()
+        //     this.searchEventListener(searchForm)
+        // }
     }
 
     openModal = (id, title) => {
