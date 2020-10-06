@@ -33,6 +33,10 @@ class Search{
         searchForm.addEventListener("submit", this.searchForWorkout.bind(this))
    }
 
+   removeEventListener(searchForm){  
+    searchForm.removeEventListener("submit", this.searchForWorkout.bind(this))
+}
+
     searchForWorkout = (e) => {
         e.preventDefault()
         const that = this
@@ -43,8 +47,8 @@ class Search{
             this.searchArr = []
             this.searchContainerForm.innerHTML = ""
             // searchForm.reset()
-            searchForm.removeEventListener("submit", this.searchForWorkout.bind(this))
-            this.searchEventListener(searchForm)
+            // this.searchEventListener(searchForm)
+            this.removeEventListener(searchForm)
             console.log(this.searchArr, "This is searchArr")
         this.adapter.searchYoutube(this.querySearch).then((videos) => {
             videos["items"].forEach(video => { 
