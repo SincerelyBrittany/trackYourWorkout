@@ -1,8 +1,7 @@
-const app = new App() //class/oject that we create a new index of 
+const app = new App() 
 const state = {
     user: {}
 }
 
 let page = {
-    
 }
