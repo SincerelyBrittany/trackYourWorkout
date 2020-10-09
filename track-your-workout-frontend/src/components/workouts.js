@@ -114,7 +114,6 @@ class Workouts{
                 if(workout.date === filter){
                     if (this.searchedWorkouts[workout.date]) {
                         this.searchedWorkouts[workout.date].push(workout)
-                        // debugger
                         this.renderSearch()
                     } else {
                         this.searchedWorkouts = {...this.searchedWorkouts, [workout.date]: [workout]}
@@ -131,6 +130,8 @@ class Workouts{
              ${this.searchedWorkouts[date].map((work) => work.renderHTML()).join(' ')}</div>`
          }).join(' ')
          this.workoutContainer.innerHTML = `${workoutString}`  
+         this.collapseFunc()
+         this.deleteFunc()
       }
 
     deleteFunc(){
