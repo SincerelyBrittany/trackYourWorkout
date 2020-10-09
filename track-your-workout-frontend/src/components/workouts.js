@@ -1,6 +1,7 @@
 class Workouts{
     constructor(){
         this.workouts = {}
+        this.searchedWorkouts = {}
         this.adapter = new WorkoutsAdapter()
         this.initBindingsAndEventListeners()
         this.renderForm()
@@ -78,6 +79,7 @@ class Workouts{
         this.workoutContainer.innerHTML = `${workoutString}`
         this.collapseFunc()
         this.deleteFunc()
+        this.searchDate()
     }
 
     collapseFunc(){
@@ -94,6 +96,42 @@ class Workouts{
             });
         }
     }
+
+    searchDate(){
+        let dateForm = document.createElement('form')
+        dateForm.innerHTML = `<input id="filterworkout" type="text" placeholder="search by date" required/> <input type="submit"/>`
+        this.workoutContainerForm.appendChild(dateForm)
+        dateForm.addEventListener("submit", this.handleDate.bind(this))
+    }
+
+    handleDate(e){
+        e.preventDefault()
+        let filter = document.getElementById("filterworkout").value
+        let allWorkouts = this.workouts
+        for (const key in allWorkouts){
+            let keyValue = allWorkouts[key]
+            keyValue.forEach(workout => {
+                if(workout.date === filter){
+                    if (this.searchedWorkouts[workout.date]) {
+                        this.searchedWorkouts[workout.date].push(workout)
+                        // debugger
+                        this.renderSearch()
+                    } else {
+                        this.searchedWorkouts = {...this.searchedWorkouts, [workout.date]: [workout]}
+                        this.renderSearch()
+                    }
+                }
+            })
+        }
+    }
+
+    renderSearch(){
+        const workoutString = Object.keys(this.searchedWorkouts).map((date) => {
+            return `<button type="button" class="collapsible">${date}</button><div id="all-workouts">
+             ${this.searchedWorkouts[date].map((work) => work.renderHTML()).join(' ')}</div>`
+         }).join(' ')
+         this.workoutContainer.innerHTML = `${workoutString}`  
+      }
 
     deleteFunc(){
         const that = this
