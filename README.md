@@ -11,26 +11,21 @@
 <!-- PROJECT LOGO -->
 <br />
 <p align="center">
-  <a href="https://www.example.com/">
-    <img src="https://github.com/SincerelyBrittany/trackYourWorkout/blob/master/track-your-workout-frontend/styles/workout_img.png" alt="Logo" >
-  </a>
+  <img src="https://github.com/SincerelyBrittany/trackYourWorkout/blob/master/track-your-workout-frontend/styles/workout_img.png" alt="Logo" >
 
   <h3 align="center"> Track Your Workout</h3>
 
   <p align="center">
     This is a single page application ("SPA") for keeping track of your workouts. I really enjoy working out and since COVID, it has been hard to keep track of the workouts on youtube. Although playlist are nice, I thought it would be cool to have a place to see all workouts for a particular date and/or time.
     <br />
-    <!-- <a href="https://www.example.com/"><strong>Explore the docs »</strong></a>
-    <br />
-    <br />-->
-    <i> <a href=""> </a>Live Site - Coming Soon </i>
-    ·
+    <i>Live Site - Coming Soon</i>
+    &middot;
     <a href="https://www.youtube.com/watch?v=yA5mG-l8TuA&ab_channel=BuildWithBrittany">View Youtube Demo</a> 
-    ·
+    &middot;
     <a href="https://dev.to/sincerelybrittany/javascript-and-rails-single-page-application-spa-3opc">Blog</a> 
-     ·
+    &middot;
     <a href="https://github.com/SincerelyBrittany//trackYourWorkout/issues">Report Bug</a>
-    ·
+    &middot;
     <a href="https://github.com/SincerelyBrittany//trackYourWorkout/issues">Request Feature</a> 
   </p>
 </p>
@@ -45,7 +40,6 @@
 * [Getting Started](#getting-started)
   * [Prerequisites](#prerequisites)
   * [Installation](#installation)
-* [Usage](#usage)
 * [Roadmap](#roadmap)
 * [Contributing](#contributing)
 * [License](#license)
@@ -57,53 +51,32 @@
 <!-- ABOUT THE PROJECT -->
 ## About The Project
 
-[![Product Name Screen Shot][product-screenshot]](https://www.example.com/)
+![Product Name Screen Shot][product-screenshot]
 
-This application was built with a rails backend and Javascript frontend. 
+This application was built with a Rails backend and JavaScript frontend. Users can search YouTube directly within the app to find workout videos, save them to a personal calendar organized by date, and delete them when done.
 
 ### Built With
 * [Ruby-on-Rails](https://guides.rubyonrails.org/)
-* [postgresql](https://www.postgresql.org/)
-* [byebug](https://rubygems.org/gems/byebug/versions/9.0.6)
-* [Javascript](https://developer.mozilla.org/en-US/docs/Web/JavaScript)
+* [PostgreSQL](https://www.postgresql.org/)
+* [JavaScript](https://developer.mozilla.org/en-US/docs/Web/JavaScript)
+* [Bootstrap 4](https://getbootstrap.com/docs/4.0/)
+* [YouTube Data API v3](https://developers.google.com/youtube/v3)
 *  Love ❤️
 
 
 <!-- GETTING STARTED -->
 ## Getting Started
 
-To get the application started you must have ruby and postgresql installed on your computer. Checkout the ruby on rails [getting-started-guide](https://guides.rubyonrails.org/v5.0/getting_started.html) to learn how to install it on your device. If you need to install postgres check out the doumentation [here](https://www.postgresql.org/about/).
+To get the application running locally you will need Ruby, Rails, and PostgreSQL installed. Check out the [Rails getting started guide](https://guides.rubyonrails.org/v5.0/getting_started.html) and [PostgreSQL docs](https://www.postgresql.org/about/) if you need to install either.
+
+You will also need a free [YouTube Data API v3 key](https://console.developers.google.com/) to enable workout search.
 
 ### Prerequisites
-Other than the gems listed in this app's Gemfile, you will need to have [Ruby](https://www.ruby-lang.org/en/downloads/) and [Rails](https://guides.rubyonrails.org/v5.0/getting_started.html) installed on your local machine as well as the ability to install Ruby gems.
 
-Before running your server, you will need to install the gems and add content to your database manually or you can use the seeds file:
-
-To install the gems first cd into <a href="https://github.com/SincerelyBrittany/track_your_workout_backend"> track_your_workout_backend </a> and run the following:
-
-```sh
-bundle install
-```
-
-To run your migrations and update your db/schema.rb file to match the structure of the database, run the following:
-
-```sh
-rails db:create
-```
-
-```sh
-rails db:migrate
-```
-
-To create data in the database, run the following:
-```sh
-rails db:seed
-```
-
-```sh
-rails s
-```
-and then go to your favorite browser and visit this webpage "http://localhost:3000/api/v1/workouts" 
+* Ruby 2.7+
+* Rails 6+
+* PostgreSQL
+* A YouTube Data API v3 key
 
 ### Installation
 
@@ -111,22 +84,21 @@ and then go to your favorite browser and visit this webpage "http://localhost:30
 ```sh
 git clone git@github.com:SincerelyBrittany/trackYourWorkout.git
 ```
-3. Cd into backend and install the gemfile packages
+
+2. Set up and start the backend — cd into [track_your_workout_backend](https://github.com/SincerelyBrittany/track_your_workout_backend) and run:
 ```sh
 bundle install
+rails db:create db:migrate db:seed
+rails s
 ```
-4. Run rails s
-5. cd into frontend and open index.html
 
+3. Add your YouTube API key — create a `config.js` file inside `track-your-workout-frontend/` (this file is gitignored):
+```js
+const YOUTUBEAPIKEY = 'your_api_key_here'
+```
 
-<!-- USAGE EXAMPLES -->
-<!-- ## Usage
+4. Open the frontend — navigate to `track-your-workout-frontend/` and open `index.html` in your browser. No build step needed!
 
-Use this space to show useful examples of how a project can be used. Additional screenshots, code examples and demos work well in this space. You may also link to more resources.
-
-_For more examples, please refer to the [Documentation](https://example.com)_
-
- -->
 
 <!-- ROADMAP -->
 ## Roadmap
@@ -138,7 +110,7 @@ See the [open issues](https://github.com/SincerelyBrittany//trackYourWorkout/iss
 <!-- CONTRIBUTING -->
 ## Contributing
 
-Contributions are what make the open source community such an amazing place to be learn, inspire, and create. Any contributions you make are **greatly appreciated**.
+Contributions are what make the open source community such an amazing place to learn, inspire, and create. Any contributions you make are **greatly appreciated**.
 
 1. Fork the Project
 2. Create your Feature Branch (`git checkout -b feature/AmazingFeature`)
@@ -184,4 +156,4 @@ Connect/Follow me:
 [twitter-url]: https://twitter.com/SincerelyBrittt
 [dev-to-url]: https://dev.to/sincerelybrittany
 [dev-to-shield]:https://img.shields.io/badge/-Dev.to-black.svg?style=flat-square&logo=dev.to&colorB=555
-[product-screenshot]: https://github.com/SincerelyBrittany/trackYourWorkout/blob/fix-search/track-your-workout-frontend/styles/workout_gif.gif
+[product-screenshot]: https://github.com/SincerelyBrittany/trackYourWorkout/blob/master/track-your-workout-frontend/styles/workout_gif.gif

@@ -1,18 +1,20 @@
 class YoutubeAdapter {
-    constructor(){
-        this.baseURL = 
-        "https://www.googleapis.com/youtube/v3"
-    }
+  constructor() {
+    this.baseURL = 'https://www.googleapis.com/youtube/v3'
+  }
 
-    searchYoutube(params){
-        return fetch(`https://www.googleapis.com/youtube/v3/search?part=snippet&maxResults=5&order=relevance&q=${params}&type=video&videoEmbeddable=true&videoSyndicated=true&key=${YOUTUBEAPIKEY}`, {
-          })
-          .then(res=> res.json())
-    }
+  searchYoutube(query) {
+    const params = new URLSearchParams({
+      part: 'snippet',
+      maxResults: 5,
+      order: 'relevance',
+      q: query,
+      type: 'video',
+      videoEmbeddable: true,
+      videoSyndicated: true,
+      key: YOUTUBEAPIKEY
+    })
+    return fetch(`${this.baseURL}/search?${params}`)
+      .then(res => res.json())
+  }
 }
-
-
-
-// `https://www.youtube.com/embed/${videoID}`
-
-
